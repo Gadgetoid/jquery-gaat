@@ -14,3 +14,8 @@ Extenal links will be tracked to /external/<url>
 Downloads will be tracked to /tracked/<filepath>
 
 GAAT requires the filepath to be present in the URL to succesfully detect and track downloads, if your files are served via a gateway page (ie: downloads.php?file=1) then you will need to adjust accordingly (use a property to store the real filename, for example)
+
+credits
+=======
+
+GAAT was developed for Further Search Marketing by Rob Welsby, see gaat-legacy.js, and ported to jQuery by myself. Feel free to use it in your websites, but please share if you change/improve anything.
