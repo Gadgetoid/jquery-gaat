@@ -1,0 +1,28 @@
+<!doctype html>
+<html>
+    <head>
+        <script type="text/javascript">
+            if (typeof(_gaq) != "object") {
+                _gaq = [];
+            }
+        </script>
+        <script type="text/javascript" src="../gaat-legacy-2.0.js"></script>
+    </head>
+    <body>
+           <ul>
+               <li><a onclick="javascript:return false;" href="mailto:test@example.com">mailto:test@example.com</a></li>
+               <li><a onclick="javascript:return false;" href="ftp://127.0.0.1">ftp://127.0.0.1</a></li>
+               <li><a onclick="javascript:return false;" href="http://localhost/download.pdf">download.pdf</a></li>
+               <li><a onclick="javascript:return false;" href="http://localhost/download.zip">download.zip</a></li>
+               <li><a onclick="javascript:return false;" href="http://localhost/download.doc">download.doc</a></li>
+           </ul>
+
+           <form onsubmit="javascript:return false;" method="post" action="badger badger mushroom">
+
+               <input type="submit" value="test" />
+
+           </form>
+
+            <a onclick="javascript:alert(_gaq.join('\n\n'));return false">Check _gaq</a>
+    </body>
+</html>
