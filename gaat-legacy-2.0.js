@@ -81,6 +81,21 @@ function trackExternalLinks(evnt) {
     gaat_trackEvent('Link', 'External', lnk, '', true);
 }
 
+function trackInternalLinks(evnt) {
+    var e = (evnt.srcElement) ? evnt.srcElement : this;
+
+    while (e.tagName != "A") {
+        e = e.parentNode;
+    }
+
+    var lnk = (e.pathname.charAt(0) == "/") ? e.pathname : "/" + e.pathname;
+
+    if (e.search && e.pathname.indexOf(e.search) == -1) lnk += e.search;
+
+    lnk = e.hostname + lnk;
+    _gaq.push(['_trackEvent', 'Link', 'Internal', lnk, '', true]);
+}
+
 function trackFormPost(evnt){
     var e = (evnt.srcElement) ? evnt.srcElement : this;
     if (e.method.toLowerCase() == 'post')
@@ -136,11 +151,18 @@ window.onload = function () {
                 } else if (hrefs[l].hostname == location.host) {
                     var path = hrefs[l].pathname + hrefs[l].search;
                     var isDoc = path.match(/\.(?:doc|eps|jpg|png|svg|xls|xlsx|docx|7zip|gzip|ppt|pdf|xls|zip|txt|vsd|vxd|js|css|rar|exe|wma|mov|avi|wmv|mp3)($|\&|\?)/);
+                    var isTracked = (hrefs[l].className == "gaattracked") || hrefs[l].getAttribute('data-gaattracked');
                     if (isDoc) {
                         if(gaat_debug){
                             alert('Tracking ' + hrefs[l].href + ' as download');
                         }
                         startListening(hrefs[l], "click", trackDownloads);
+                    } else if (isTracked) {
+                        if (gaat_debug) {
+                            alert('Tracking ' + hrefs[l].href + ' as tracked internal');
+                        }
+                        startListening(hrefs[l], "click", trackInternalLinks);
+
                     }
                 } else if (!hrefs[l].href.hostname != location.host) {
                     if(gaat_debug){
