@@ -1,10 +1,10 @@
-//	Google Analytics Advanced Tracker v0.8 - JQuery version
+//	Google Analytics Advanced Tracker v2.0 - Legacy JS version
 //  -------------------------------------------------------
 //  Created by Further.co.uk
 //  -------------------------------------------------------
 //  This javascript tags file downloads and external links in Google Analytics.
 //	You need to be using the Google Analytics New Tracking Code (ga.js) for this script to work
-//	To use, place this file on all pages just above the Google Analytics tracking code.
+//	To use, place this file on all pages just below the Google Analytics tracking code. ( _gaq must be defined )
 //	All outbound links and links to non-html files should now be automatically tracked.
 
 
@@ -16,10 +16,15 @@ function startListening(obj, evnt, func) {
     }
 }
 
+function gaat_trackEvent(category, action, opt_label, opt_value, opt_noninteraction)
+{
+    _gaq.push(['_trackEvent', category, action, opt_label, opt_value, opt_noninteraction]);
+}
+
 function trackFtp(evnt) {
     var href = (evnt.srcElement) ? evnt.srcElement.href : this.href;
 
-    _gaq.push(['_trackEvent', 'Link', 'FTP', href, '', true]);
+    gaat_trackEvent('Link','FTP',href,'',true);
 }
 
 function trackDownloads(evnt) {
@@ -52,7 +57,7 @@ function trackDownloads(evnt) {
         alert('Raising tracking event for ' + href + ' in sub cat ' + sub_category + ', cat Download');
     }
 
-    _gaq.push(['_trackEvent', 'Download', sub_category, href, '', false]);
+    gaat_trackEvent('Download', sub_category, href, '', false);
 }
 
 function trackMailto(evnt) {
@@ -73,7 +78,7 @@ function trackExternalLinks(evnt) {
     if (e.search && e.pathname.indexOf(e.search) == -1) lnk += e.search;
 
     lnk = e.hostname + lnk;
-    _gaq.push(['_trackEvent', 'Link', 'External', lnk, '', true]);
+    gaat_trackEvent('Link', 'External', lnk, '', true);
 }
 
 function trackFormPost(evnt){
@@ -81,7 +86,7 @@ function trackFormPost(evnt){
     if (e.method.toLowerCase() == 'post')
     {
         lnk = e.action;
-        _gaq.push(['_trackEvent', 'Form', 'Submit', lnk, '', true]);
+        gaat_trackEvent('Form', 'Submit', lnk, '', true);
     }
 }
 
