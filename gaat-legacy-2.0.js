@@ -24,7 +24,7 @@ function gaat_trackEvent(category, action, opt_label, opt_value, opt_noninteract
 function trackFtp(evnt) {
     var href = (evnt.srcElement) ? evnt.srcElement.href : this.href;
 
-    gaat_trackEvent('Link','FTP',href,'',true);
+    gaat_trackEvent('Link','FTP',href,0,true);
 }
 
 function trackDownloads(evnt) {
@@ -57,13 +57,13 @@ function trackDownloads(evnt) {
         alert('Raising tracking event for ' + href + ' in sub cat ' + sub_category + ', cat Download');
     }
 
-    gaat_trackEvent('Download', sub_category, href, '', false);
+    gaat_trackEvent('Download', sub_category, href, 0, false);
 }
 
 function trackMailto(evnt) {
     var href = (evnt.srcElement) ? evnt.srcElement.href : this.href;
     var mailto = href.substring(7);
-    _gaq.push(['_trackEvent', 'Link', 'Email', mailto, '', false]);
+    _gaq.push(['_trackEvent', 'Link', 'Email', mailto, 0, false]);
 }
 
 function trackExternalLinks(evnt) {
@@ -78,7 +78,7 @@ function trackExternalLinks(evnt) {
     if (e.search && e.pathname.indexOf(e.search) == -1) lnk += e.search;
 
     lnk = e.hostname + lnk;
-    gaat_trackEvent('Link', 'External', lnk, '', true);
+    gaat_trackEvent('Link', 'External', lnk, 0, true);
 }
 
 function trackInternalLinks(evnt) {
@@ -93,7 +93,7 @@ function trackInternalLinks(evnt) {
     if (e.search && e.pathname.indexOf(e.search) == -1) lnk += e.search;
 
     lnk = e.hostname + lnk;
-    _gaq.push(['_trackEvent', 'Link', 'Internal', lnk, '', true]);
+    _gaq.push(['_trackEvent', 'Link', 'Internal', lnk, 0, true]);
 }
 
 function trackFormPost(evnt){
@@ -101,7 +101,7 @@ function trackFormPost(evnt){
     if (e.method.toLowerCase() == 'post')
     {
         lnk = e.action;
-        gaat_trackEvent('Form', 'Submit', lnk, '', true);
+        gaat_trackEvent('Form', 'Submit', lnk, 0, true);
     }
 }
 
@@ -164,7 +164,7 @@ window.onload = function () {
                         startListening(hrefs[l], "click", trackInternalLinks);
 
                     }
-                } else if (!hrefs[l].href.hostname != location.host) {
+                } else if (hrefs[l].href.hostname != location.host) {
                     if(gaat_debug){
                         alert('Tracking ' + href[l].href + ' as external link')
                     }

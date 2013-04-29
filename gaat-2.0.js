@@ -74,7 +74,7 @@
 
             if( method.toLowerCase() == 'post' )
             {
-                trackEvent('Form','Submit', action, '', true);
+                trackEvent('Form','Submit', action, 0, true);
             }
         }
 
@@ -84,7 +84,7 @@
 
             var href = jQuery(obj).attr('href');
 
-            trackEvent('Link','FTP',href,'',true);
+            trackEvent('Link','FTP',href,0,true);
         }
 
         /* Track email addresses with the email prefix from opts */
@@ -95,7 +95,7 @@
             var href = jQuery(obj).attr('href');
             var mailto = href.substring(7);
 
-            trackEvent('Link','Email',mailto, '', false);
+            trackEvent('Link','Email',mailto, 0, false);
         }
 
         function trackDownload(e,obj)
@@ -136,7 +136,7 @@
                 sub_category = 'Zip';
             }
 
-            trackEvent('Download',sub_category,link, '', false);
+            trackEvent('Download',sub_category,link, 0, false);
         }
 
         function trackExternal(e,obj)
@@ -153,7 +153,7 @@
 
             link		= hostname + link;
 
-            trackEvent('Link','External',link,'',true);
+            trackEvent('Link','External',link,0,true);
         }
 
         function addLinkTracking()
