@@ -30,7 +30,7 @@ function trackFtp(evnt) {
 function trackDownloads(evnt) {
     var href = (evnt.srcElement) ? evnt.srcElement.href : this.href;
 
-    var sub_category = '';
+    var sub_category = 'Other';
 
     // pdf files
     if (href.match(/\.(?:pdf)/)) {
