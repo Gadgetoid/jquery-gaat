@@ -11,6 +11,8 @@
         <script type="text/javascript">
             jQuery(document).ready(function(){
 
+                jQuery('.test').click(function(){return false});
+
                 jQuery.gaat({
 
                     debug:true
@@ -24,9 +26,10 @@
            <ul>
                <li><a onclick="javascript:return false;" href="mailto:test@example.com">mailto:test@example.com</a></li>
                <li><a onclick="javascript:return false;" href="ftp://127.0.0.1">ftp://127.0.0.1</a></li>
-               <li><a onclick="javascript:return false;" href="http://localhost/download.pdf">download.pdf</a></li>
+               <li><a class='test' onclick="javascript:return false;" href="http://localhost/download.pdf">download.pdf</a></li>
                <li><a onclick="javascript:return false;" href="http://localhost/download.zip">download.zip</a></li>
                <li><a onclick="javascript:return false;" href="http://localhost/download.doc">download.doc</a></li>
+               <li><a href="http://www.google.com">google</a></li>
            </ul>
 
            <form onsubmit="javascript:return false;" method="post" action="badger badger mushroom">

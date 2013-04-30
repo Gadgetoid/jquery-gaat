@@ -1,0 +1,52 @@
+<!doctype html>
+<html>
+<head>
+    <script type="text/javascript">
+        if (typeof(_gaq) != "object") {
+            _gaq = [];
+        }
+    </script>
+    <script type="text/javascript" src="http://cdn.jsdelivr.net/jquery/2.0.0/jquery-2.0.0.min.js"></script>
+    <script type="text/javascript" src="../gaat-2.1.js"></script>
+    <script type="text/javascript">
+        jQuery(document).ready(function(){
+
+            jQuery('.test').click(function(){return true});
+            jQuery('.test').click(function(){return true});
+
+            jQuery('.add_dynamic').click(function(){
+
+                  jQuery('<li><a onclick="javascript:return false;" href="http://www.example.com">dynamic link</a></li>').appendTo('.links');
+
+            });
+
+            jQuery.gaat({
+
+                debug:true
+
+            });
+        });
+    </script>
+</head>
+<body>
+<ul class="links">
+    <li><a onclick="javascript:return false;" href="mailto:test@example.com" data-gaat-options='{track:false}'>mailto:test@example.com</a></li>
+    <li><a onclick="javascript:return false;" href="ftp://127.0.0.1" data-gaat-options='{track:true}'>ftp://127.0.0.1</a></li>
+    <li><a class='test' onclick="javascript:return false;" href="http://localhost/download.pdf">download.pdf</a></li>
+    <li><a onclick="javascript:return false;" href="http://localhost/download.zip">download.zip</a></li>
+    <li><a onclick="javascript:return false;" href="http://localhost/download.doc">download.doc</a></li>
+    <li><a href="http://www.google.com">google</a></li>
+    <li><a class="test" href="http://www.google.com">test link with event</a></li>
+</ul>
+
+<input class="add_dynamic" type="button" value="add dynamic element" />
+
+<form onsubmit="javascript:return false;" method="post" action="badger badger mushroom">
+
+    <input type="submit" value="test" />
+
+</form>
+
+<a onclick="javascript:alert(_gaq.join('\n\n'));return false">Check _gaq</a>
+</body>
+</html>
