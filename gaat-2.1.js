@@ -104,15 +104,16 @@
         /* Defer link action, allowing the _gaq queue to process */
         function deferLinkAction(e, obj) {
             // Avoid deferring link action on any link with a target
-            if (jQuery(obj).attr('target') == undefined
-                    &&
-                (jQuery(obj).attr('target').toLowerCase() == '_self' || jQuery(obj).attr('target').toLowerCase() == '')) {
+            if (jQuery(obj).attr('target') == undefined || jQuery(obj).attr('target').toLowerCase() == '_self' || jQuery(obj).attr('target').toLowerCase() == '') {
 
-                alert(jQuery._data(obj, 'events'));
-                alert(jQuery._data(obj, 'events').click.length);
+                //alert(jQuery._data(obj, 'events'));
+                //alert(jQuery._data(obj, 'events').click.length);
+
 
                 // Avoid deferring link action on any link with existing onclick events
-                if (opts.respectExistingEvents && jQuery._data(obj, 'events') != undefined && jQuery._data(obj, 'events').click.length > 0) return true;
+                if (opts.respectExistingEvents &&
+                    ( (jQuery(obj).attr('onclick') != undefined && jQuery(obj).attr('onclick') != '') ||
+                        ( jQuery._data(obj, 'events') != undefined && jQuery._data(obj, 'events').click.length > 0 ) ) ) return true;
 
                 setTimeout(function () { location.href = obj.href; }, 400);
                 if (opts.debug) alert('Deferring link action');
