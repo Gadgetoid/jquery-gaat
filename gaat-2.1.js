@@ -190,7 +190,7 @@
 
             var options = {};
 
-            if (options_string != '')
+            if (!options_string == '')
             {
                 if (!options_string.indexOf('"') > -1)
                 {
