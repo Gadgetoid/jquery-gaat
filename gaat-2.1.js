@@ -260,7 +260,7 @@
             jQuery(document).on('click', selector_anchor,
                 function(e){
                     //try{
-                    alert('handled');
+                    //alert('handled');
                         var href 	    = jQuery(this).prop('href');
                         var hostname 	= jQuery(this).prop('hostname');
                         var protocol 	= jQuery(this).prop('protocol');
